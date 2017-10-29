@@ -12204,7 +12204,7 @@ Standard deviation of prices: $165,171.13
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Splitting the dataset into some ratio of training and testing, ensures, you chose a higher accuracy model. When, an entire  dataset has been used for testing, it is highly likely that overfitting would occur. In some scenarios or models, you have certain hyper-parameters to chose upon when considering or fitting a model.In such cases splitting the data into training and testing would be lot helpful in trying various combinations of parameters and chose the model with higher accuracy.</p>
+<p>Splitting the dataset into some ratio of training and testing, ensures, you chose a higher accuracy model.When we perform training, testing(sometimes includes validation) two things might happen: we overfit our model or we underfit our model. It gets overfit when the model is too complex and gets underfit when the model is too simple to predict. Hence, splitting the dataset into training and testing would help the model to increase the degree of accuracy and in also many cases it is testing, traing and validation. In some scenarios or models, you have certain hyper-parameters to chose upon when considering or fitting a model.In such cases splitting the data into training and testing would be lot helpful in trying various combinations of parameters and chose the model with higher accuracy.</p>
 
 </div>
 </div>
@@ -13285,7 +13285,7 @@ Think about the pros and cons of adding more training points based on if the tra
 </li>
 <li><p>The convergence of training and testing score curves seem to have already occured at around 300.The two curves are running parallel to x-axis already and, I assume adding few more points or any number of points wouldn't change the pattern of the training and testing curves.</p>
 </li>
-<li><p>On considering the model with depth 3, adding training points wouldn't definitely benefit the model as we have already reached the convergence. However, I am interested in looking at the models between 3 and 6.</p>
+<li><p>Model 3 starts converging at about 300 training points,which states that adding more points would definitely don't benefit the model.Interestingly,training curve for the model has a gradual decreasing curve and being constant about 200 points,testing curve has been increasing with higher slope until 50 points and then being gradual there after.</p>
 </li>
 </ol>
 
@@ -13778,7 +13778,7 @@ lblbqqaSwnYC9+rGArj7DuBHwHvBz98HLgtucwzIM7PtwLXAE8HlLwELT3uQRaRNU5UFETkrMytz
 <ol>
 <li><p>When the model is trained with maximum depth of 1, it does suffer with high bias (underfitting). We can clearly see from the graph that training and validation scores are running at similar variance but has relatively low score.</p>
 </li>
-<li><p>When the model is trained at depth 10, it has the highest variance between the two scores which certainly implies that this model suffers from overfitting problem.</p>
+<li><p>When the model is trained at depth 10, it has the highest variance between the two scores which certainly implies that this model suffers from overfitting problem. We can clearly see training and validation score curves are running far apart which implies it has higher variance tradeoff.</p>
 </li>
 </ol>
 
@@ -13847,8 +13847,8 @@ lblbqqaSwnYC9+rGArj7DuBHwHvBz98HLgtucwzIM7PtwLXAE8HlLwELT3uQRaRNU5UFETkrMytz
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
 <ol>
-<li>A grid in grid search technique corresponds to an k-dimensional grid where k is number of hyperparamters. Each cell in a grid corresponds to F1-score of the model which is formed by the combination of k-hyperparamters.</li>
-<li>Let's consider Decision trees as the model to apply a grid search. We would have hyper-parameters such as maximum depth, maximum number of cells per partition (leaf node), minimum number of training points per cell (leaf node). Optimizing these three parameters would require a 3x3 grid of F1 scores and find the best combination of hyper-parameters for the model. </li>
+<li>A grid in grid search technique corresponds to an k-dimensional grid where k is number of hyperparamters. Each cell in a grid corresponds to Accuracy Score(F1-score,r2_score, etc.) of the model which is formed by the combination of k-hyperparamters.</li>
+<li>Let's consider Decision trees as the model to apply a grid search. We would have hyper-parameters such as maximum depth, maximum number of cells per partition (leaf node), minimum number of training points per cell (leaf node). Optimizing these three parameters would require a 3x3 grid of accuracy scores(r2_score in this case) and find the best combination of hyper-parameters for the model. </li>
 </ol>
 
 </div>
@@ -13880,7 +13880,7 @@ lblbqqaSwnYC9+rGArj7DuBHwHvBz98HLgtucwzIM7PtwLXAE8HlLwELT3uQRaRNU5UFETkrMytz
 <ol>
 <li><p>K-fold cross validation is a technique to shuffle and split the data points into k-bins. Here, the training would be performed on k-1 bins and testing on the remaining bin. In order to cover all the bins as a testing bin, cross validation is performed k times and and the performance metric is averaged on all the k-iterations.</p>
 </li>
-<li><p>Grid Search is also a technique to optimize the model. However, it is mainly used to optimize the hyper-parameters of the given model.Grid Search alone cannot provide the best optimization approach as it narrows down to a specific set of data points. Cross Validation is a pretty good process to normalize the data points and when applied with grid search technique, it should be perfect to chose the model.</p>
+<li><p>Grid Search is also a technique to optimize the model. However, it is mainly used to optimize the hyper-parameters of the given model.Grid Search alone cannot provide the best optimization approach as it narrows down to a specific set of data points. Cross Validation is a pretty good process to normalize the data points and when applied with grid search technique, it should be perfect to chose the model.The advantage of using k-fold CV with gridsearch is, K-fold CV is less bothered how the data is split because every point in a training set becomes one time a testing(or validation) set and k-1 times training set. Also, more number of splits( increase in K) less is the variance of the model.So it is a good choice to have k-fold CV with gridsearch because, if we were to opt parameter tuning on one data split, the model wouls suffer high variance which is probably not good for generalization of the model.</p>
 </li>
 </ol>
 
